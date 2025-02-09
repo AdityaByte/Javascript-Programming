@@ -116,3 +116,41 @@ Result-> Conversion: to String
 true -> "true" and false -> "false"
 null -> "null" and undefined -> "undefined"
 */
+
+// Note : If you want to convert the datatypes to number then there a shortcut for that
+
+let data = +"32"
+console.log(data);
+console.log(typeof data)
+console.log(+true) // Gives Output : 1
+console.log(+null) // Gives output : 0
+console.log(+"abc") // Gives output : NaN
+console.log(+undefined) // Gives output : NaN
+
+// Operations ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// The basics operations of programming that we can perform in javascript too 
+
+let a = 10;
+let b = 20;
+
+console.log(a+b);
+console.log(a-b);
+console.log(a*b);
+console.log(a/b);
+console.log(a**b); // This could be simplified as a^b
+console.log(a%b); 
+console.log(a+b);
+
+
+// Let us we talk about some confusing string to number or number to string conversion.
+
+let chai = "3" + 2 + 2 // Here the first operand is a string so the following operand became string and thus the whole will be concated.
+let code = 2 + 3 + "6" // Here the first and second operand is a number so they evaluate as additon after that they get concated and became a string
+
+console.log(typeof chai, typeof code)
+console.log(chai, code) // 322, 56
+console.log("3" - "2") // Here substration is a number operation so it converts the two string as number.
+
+// Note - The - operator triggers type coercion, converting strings to numbers, so "3" - "2" becomes 3 - 2 = 1.
+
