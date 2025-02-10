@@ -44,3 +44,35 @@ const func = function() {
 }
 
 console.log(typeof func);  // Return function
+
+// Stack and Heap memory
+// Stack memory - Primitive datatypes
+// Heap memory - non primitive datatypes
+
+/*
+All the primitive datatypes are stored in the stack memory and all the non primitive datatypes are stored in heap memory.
+-> When we copy a data from the stack memory then the data got copied on the other hand in the heap memory the reference 
+got copied. 
+*/
+
+let ras = "somrass";
+let anotherRas = ras;
+
+anotherRas = "Mangoras";
+
+console.log(anotherRas);
+console.log(ras);
+
+// Datatypes that are stored in the heap memory
+// Constants just prevent the reassignment but we can makes changes to the variable if it is immutable here the dict is mutable so it can be changed.
+
+const studentInformation = {
+    name: "aditya",
+    course: "btech cse"
+}
+
+const anotherStudent = studentInformation;
+
+anotherStudent.name = "yeshank"
+
+console.log(studentInformation); // Data value got changed.
