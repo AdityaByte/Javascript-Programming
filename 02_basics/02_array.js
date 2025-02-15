@@ -12,7 +12,7 @@ const new_marvel_heroes = marvel_heroes.concat(dc_heroes)
 console.log("Concat method :", new_marvel_heroes)
 
 // Spread method - By this method you can concat the elements of two array.
-const all_heroes = [...marvel_heroes, ...dc_heroes]
+const all_heroes = [...marvel_heroes, ...dc_heroes] // ... - spread operator
 console.log("All Heroes :",all_heroes)
 
 // Let we have an array like
