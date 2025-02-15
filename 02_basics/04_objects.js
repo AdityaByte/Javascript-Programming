@@ -56,3 +56,23 @@ console.log(Object.entries(instagramUser));
 
 // For checking out the key exists or not
 console.log(instagramUser.hasOwnProperty("isLoggedIn")) // Returns boolean value.
+
+// Destructuring of object in js.
+
+const course = {
+    coursename: "CS50 Python programming",
+    price: null,
+    courseInstructor: "david j malan"
+}
+
+/**
+ * Sometimes we need to use the values from the object many times.
+ * so we need to keep use them like this course.price etc
+ * so we can destructure an object.
+ */
+
+// const {courseInstructor} = course
+const {courseInstructor: instructor} = course
+
+// Now i can use the courseInstructor without course.etc/
+console.log(instructor);
