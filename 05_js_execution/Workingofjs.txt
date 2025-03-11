@@ -1,0 +1,66 @@
+In this file we will learn about how javascript is being executed.
+And we will learn about call stack in js.
+
+Javascript Execution Context : Iska simple sa mtlb hota hai 
+jo bhi file bnai hai  usko javascript run kaise krengi.
+
+Javascript runs our program in two phase:
+
+1. Global execution context. {} - aur isko refer kr dete hai 
+this variable me 
+a. Browser in this ki value window object ata hai 
+b. Local me run krenge toh node ka env ata hai 
+
+Note: Js single threaded hai iske andar har chij ek process hoti hai.
+
+2. Function Execution Context / Functional Execution Context.
+
+There is one more context which is 
+
+3. Eval Execution Context.
+
+
+Js code -> It runs in two phase
+1. Memory creation phase / Creation phase / Memory phase 
+=> Memory is allocated for the variables, constants etc but they won't execute.
+
+Example : 
+let val1 = 10
+let val2 = 5
+function addNum(num1,num2) {
+    let total = num1 + num2
+    return total
+}
+let result1 = addNum(val1, val2)
+let result2 = addNum(10, 2)
+
+Step 1: Global execution - ye toh honga hi 
+Step 2: MCP (Memory creation phase) : Sare variables ko ikatha krke
+rkha jata hai bas.
+val1 = undefined jaynga
+val2 = undefined jaynga
+addNum = defination (function ki defination jayngi)
+result1 = undefined
+result2 = undefined
+Note - this upper thing is known as first cycle.
+
+Step 3: Now Execution phase came :
+val1 <- 10
+val2 <- 5
+addNum ke andar kuch nhi honga 
+addNum -> Ek aur execution context bnayenga (new variable environment + execution thread)
+    jitni bar function likhte hai uske andar fir wpas se MCP aur EP honga
+
+result1 -> function hai toh 
+val1 = undefined
+val2 = undefined
+total = undefined
+
+now execution context - execution ke dauran mathematical operation wagera calculation hote hai
+
+Note - Koi function return krta hai koi value toh vo global execution context
+me return krta hai.
+
+Note - function ka execution phase khatam hone pe wo delete bhi ho jata hai.
+
+ab result2 ayenga aur fir wohi kahani repeat hongi.
