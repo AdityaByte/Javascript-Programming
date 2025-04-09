@@ -1,0 +1,55 @@
+<!-- Here we are learning about how to edit and remove elements in DOM-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit and remove elements</title>
+</head>
+<body style="background-color: black; color: white;">
+    <ul>
+        <li class="lang">Ruby</li>
+    </ul>
+</body>
+<script>
+    // Here the task that i have to do is that we want to create a function which adds the list items 
+    const parent = document.querySelector("ul") // So this is the parent Node ok.
+   
+    const addLangs = (langName) => {
+        const myLangName = new String(langName)
+        if (myLangName.trim() == "") {
+            console.log("Lang name is empty")
+            return
+        }
+        // We have to create another node each time when we want to add an element to it.
+        const listItem = document.createElement("li")
+        const textNode = document.createTextNode(langName)
+        listItem.appendChild(textNode)
+        parent.appendChild(listItem)
+        console.log("List item inserted.")
+    }
+
+    addLangs("Python")
+    addLangs("Javascript")
+    addLangs("Java")
+
+    // Editing an element in dom
+    // first of all we have to select the element which we want to edit.
+    const secondChild = document.querySelector("li:nth-child(2)")
+    // If we do this
+    // secondChild.innerHTML("Ts") // It is just overriding the element and it is not the optimized way of doing that.
+    // Instead of that you should do this.
+    // Create another element and replace that with the original
+    const newItem = document.createElement("li")
+    newItem.appendChild(document.createTextNode("Zig"))
+    secondChild.replaceWith(newItem) // Yo item got replaced 
+
+    // Editing element through outerHTML
+    const firstChild = document.querySelector("li:first-child")
+    firstChild.outerHTML = "<li>Golang</li>" 
+
+    // Removing an element from the dom.
+    const lastChild = document.querySelector("li:last-child")
+    lastChild.remove()
+</script>
+</html>
