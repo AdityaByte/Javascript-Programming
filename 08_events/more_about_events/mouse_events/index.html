@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Events</title>
+</head>
+<body style="background-color: #010101;">
+    <div class="box" style="width: 400px; height: 400px; background-color: crimson;">
+        
+    </div>
+    <div class="newbox" style="width: 400px; height: 10px; background-color: green; display: flex; align-items: center; justify-content: center;">
+        <h1></h1>
+    </div>
+</body>
+
+<script>
+    let box = document.querySelector(".box") // If we are selecting only one element use the querySelector.
+    box.style.display = "flex"
+    box.style.justifyContent = "center"
+    box.style.alignItems = "center"
+    box.addEventListener("mouseenter", (e)=>{
+        const newElement = document.createElement("h1")
+        newElement.id = "greet"
+        newElement.textContent = "Hello aditya"
+        newElement.style.color = "white"
+        box.appendChild(newElement)
+    }, false)
+    box.addEventListener("mouseleave",(e)=>{
+        const element = document.getElementById("greet")
+        box.removeChild(element)
+    }, false)
+    box.addEventListener("click", (e)=> {
+        document.getElementById("greet").textContent = "Aur bhai aditya"
+    })
+    box.addEventListener('dblclick', (e)=>{
+        document.getElementById("greet").textContent = "Aur kya kr rha hai"
+    })
+    box.addEventListener("mouseup",(e)=>{
+        console.log("Mouse Up")
+    })
+    box.addEventListener("mousedown",(e)=>{
+        console.log("Mouse Down")
+    })
+    box.addEventListener('contextmenu', (e)=>{
+        console.log("Right clicked") // Right clicked.
+    })
+
+    const newbox = document.querySelector(".newbox")
+
+    // What we have to do that when the mouse enter we have to make it big ok
+    newbox.addEventListener("mouseenter", (e)=>{
+        for(let i=1; i<=10; i++){
+            setTimeout(() => {
+                newbox.style.height = `${i*40}px`
+                newbox.style.borderBottomLeftRadius = `${i*10}%`
+                newbox.style.borderBottomRightRadius = `${i*10}%`
+            }, 100*i);
+        }
+    })
+    newbox.addEventListener("click", (e)=> {
+        console.log("Mouse over");
+        const funObject = {
+            1: "No",
+            2: "Nahi",
+            3: "Nako",
+            4: "Bilkul nahi"
+        }
+        const elem  = document.querySelector("h1")
+        
+        for(let i=1; i<=Object.keys(funObject).length; i++){
+            console.log(i)
+            setTimeout(()=> {
+                elem.textContent = funObject[i]
+            }, i*500)
+        }
+    })
+
+</script>
+</html>

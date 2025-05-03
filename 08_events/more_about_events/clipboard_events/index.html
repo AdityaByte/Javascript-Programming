@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard events</title>
+</head>
+<body>
+    <h1>Try to copy it</h1>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+</body>
+<script>
+    document.querySelector('h1').addEventListener("copy", (e)=>{
+        e.preventDefault()
+        e.clipboardData.setData("text/plain", "Kyu copy krne du be")
+        alert("alert is restricted.")
+    })
+
+    document.querySelector("textarea").addEventListener("paste", (e)=>{
+        // e.preventDefault()
+        const pastedText = e.clipboardData.getData("text/plain")
+        setTimeout(()=>{
+            alert("Text pasted successfully")
+        }, 1000) // Delayed for 1 second.
+    })
+
+    document.querySelector("textarea").addEventListener("cut", (e)=>{
+        e.preventDefault()
+        e.clipboardData.setData("text/plain", "Kya cut krra hai bhai")
+        const data = e.clipboardData.getData("text/plain")
+        setTimeout(()=>{
+            alert(`ye dekh ${data}`)
+        }, 500)
+    })
+</script>
+</html>

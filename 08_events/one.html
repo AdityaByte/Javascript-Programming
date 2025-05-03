@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events in js.</title>
+</head>
+<body style="background-color: #414141;">
+    <h2 style="color: white;">Amazing images</h2>
+    <div>
+        <ul id="images" style="color: white;">
+            <li><img id="img1" src="https://media.istockphoto.com/id/1036787948/photo/lord-ganesha-ganesha-festival.jpg?s=612x612&w=is&k=20&c=hspvDRQ-Fgqov_QMf7REmKksh03p9JZQG5nFRkUuGsc=" alt="" width="200px"></li>
+            <li><img id="img2" src="https://media.istockphoto.com/id/2171164442/photo/a-small-orange-fruit-sits-on-a-wooden-leaf.jpg?s=612x612&w=is&k=20&c=RQR4FtLT30zBbxi5WIZ1latYKZ1XtppaYu2z7DY92Ig=" alt="" width="200px"></li>
+            <li><img id="img3" src="https://media.istockphoto.com/id/1036787948/photo/lord-ganesha-ganesha-festival.jpg?s=612x612&w=is&k=20&c=hspvDRQ-Fgqov_QMf7REmKksh03p9JZQG5nFRkUuGsc=" alt="" width="200px"></li>
+            <li><img id="img4" src="https://media.istockphoto.com/id/2171164442/photo/a-small-orange-fruit-sits-on-a-wooden-leaf.jpg?s=612x612&w=is&k=20&c=RQR4FtLT30zBbxi5WIZ1latYKZ1XtppaYu2z7DY92Ig=" alt="" width="200px"></li>
+            <li><a id="googleLink" href="https://www.google.com">google.com</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    // Since this below approach gives us less feature.
+    // document.querySelector("#img1").onclick = function() {
+    //     alert("Image 1 clicked")
+    // }
+
+    // document.getElementById("img1").addEventListener('click', () => {
+    //     alert("image 1 clicked")
+    // }, false) 
+
+    // attachEvent() 
+    // jQuery - on
+
+    // Event object.
+    // document.querySelector("#img1").addEventListener('click', function(e){
+    //     console.log(e);
+    //     console.log(e.timeStamp);
+    // }, false)
+
+    // Type, timestamp, preventDefault, target
+    // srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // Event propogation.
+    // False case : When we do this then bubbling happens the event goes from bottom to top.
+    // True case : When we do this then capturing happens the event goes from top to bottom.
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("Clicked inside the ul");
+    }, false)
+
+    document.getElementById('img1').addEventListener('click', function(e){
+        console.log("clicked at the img1");
+        // If you want to stop the propogation then
+        // e.stopPropagation()
+    }, false)
+
+    // preventDefault
+    document.querySelector("#googleLink").addEventListener('click', (event) => {
+        event.preventDefault()
+        alert("Hello world")
+    }, false)    
+
+    // Goal: we want we have to click the li's and they disappear.
+    document.querySelector("#images").addEventListener('click', function(event){
+        console.log(event.target.parentNode);
+
+        if (event.target.tagName === "IMG"){
+            console.log(event.target.id);
+            let removeIt = event.target.parentNode
+            // removeIt.remove()
+            removeIt.parentNode.removeChild(removeIt); // Prefer this over the upper one.
+        }
+    }, false)
+
+</script>
+</html>

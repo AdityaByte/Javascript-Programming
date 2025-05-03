@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI events</title>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">
+            <div class="box2"><h1 class="h1-elem">Hello world</h1></div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("click", function(e){
+        console.log(e.type); // Gives the type of the event
+    })
+
+    document.querySelector(".box").addEventListener("click", function(e){
+        e.stopPropagation()
+        console.log(e.srcElement); // Same as target, but older (used in Internet Explorer). Avoid using it in modern code.
+        console.log(`Target ${e.target.className}`); // It prints the actual element where the event happened.
+        console.log(`Target ${e.currentTarget.className}`); // Use currentTarget if you're listening on a parent but want to ignore child clicks.
+    })
+
+    document.addEventListener("click", function(e){
+        e.preventDefault() // Use preventDefault if you want to avoid the default behavior of the browser.
+        console.log("Prevent default");
+        console.log(e.timeStamp) // Gives the current timestamp at which the element is clicked with respect to the page is loaded at.
+    })
+
+</script>
+</html>

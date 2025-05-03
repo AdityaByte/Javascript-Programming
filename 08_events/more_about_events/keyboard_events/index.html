@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard events</title>
+</head>
+<body style="display: flex; flex-wrap: wrap;">
+    
+</body>
+<script>
+    let count = 0
+    document.addEventListener('keydown', (e)=>{
+        count++
+        console.log("Key presed");
+        const elem = document.createElement("div")
+        elem.style.width = "100px"
+        elem.style.height = "100px"
+        if (count % 2 == 0){
+            elem.style.backgroundColor = "crimson"
+        } else {
+            elem.style.backgroundColor = "black"
+        }
+        elem.style.margin = "2px"
+        document.querySelector("body").appendChild(elem)
+    })
+
+    // Some other events like keydown and keycode 
+</script>
+</html>
