@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Timeout function</title>
+</head>
+<body>
+    <h1 id="title">
+        Learning JS
+    </h1>
+    <button id="stop">Stop timeout</button>
+</body>
+<script>
+    // Set timeout function in js.
+    // This function is not the part of the core js it is the part of the Window object and the all js runtime.
+    // If we want to perform a task over after a period of time then we can use this function.
+    // It takes two argument - a handler function and the other is the time in milliseconds.
+    // Handler function : Function having no name is handler function.
+
+    const changeText = function() {
+        document.querySelector("h1").textContent = "Javascript from Hitesh Choudary sir."
+    }
+
+    // But in the timeout function we can't pass third argument in it like if we have to pass a text in the function then we can't pass it.
+    const timeoutRef = setTimeout(changeText, 2000)
+
+    document.querySelector("#stop").addEventListener("click", function(){
+        clearTimeout(timeoutRef)
+    })
+</script>
+</html>
