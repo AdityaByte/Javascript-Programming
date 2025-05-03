@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited background color</title>
+</head>
+<style>
+    body{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    h1{
+        font-size: 10ch;
+    }
+    button{
+        font-size: medium;
+        width: 10%;
+        padding: 20px 30px;
+        margin:5px;
+        border-radius: 12px;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <h1>Aditya Pawar</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    // we have to create a list of numbers and select a random color from the list and make that to the background color.
+    
+    const makeRandomColor = () => {
+        const color = "0123456789ABCDE"
+        let randomColor = "#"
+        for(let i=0; i<6; i++){
+            randomColor += color[Math.floor(Math.random() * 16)]
+        }
+        return randomColor
+    }
+    
+    const body = document.querySelector("body")
+    const h1Element = document.querySelector("h1")
+    
+    const startFunc = function(){
+        body.style.backgroundColor = makeRandomColor()
+    }
+
+    let referenceofSetInterval;
+
+    document.querySelector("#start").addEventListener('click', function(e){
+        if(!referenceofSetInterval) {
+            referenceofSetInterval = setInterval(startFunc, 500)
+        }
+    })
+
+    document.querySelector("#stop").addEventListener('click', function(e){
+        clearInterval(referenceofSetInterval)
+        referenceofSetInterval = null
+    })
+</script>
+</html>
