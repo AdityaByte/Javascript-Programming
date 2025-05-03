@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointer events</title>
+</head>
+<body>
+    <div class="box" style="height: 800px; width: 800px; background-color: blueviolet;"></div>
+</body>
+<script>
+    const box = document.querySelector(".box");
+
+    box.addEventListener("pointerdown", () => {
+        console.log("Pointer down!");
+    });
+
+    box.addEventListener("pointermove", () => {
+        console.log("Pointer moving...");
+    });
+
+    box.addEventListener("pointerup", () => {
+        console.log("Pointer released!");
+    });
+
+</script>
+</html>
