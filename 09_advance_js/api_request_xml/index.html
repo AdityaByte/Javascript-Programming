@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+// Here we are discussing about the old way of how to make a request to an api
+// AJAX request.
+
+const requestUrl = "https://api.github.com/users/AdityaByte"
+
+const makeRequest = () => {
+    // Step 1: Create the object of the XMLHttpRequest
+    const request = new XMLHttpRequest() 
+    // Step 2: Open a request with the open method.
+    // Takes two parameter 1. Request Type 2. Request Url.
+    request.open('GET', requestUrl) 
+    request.onreadystatechange = function() {
+        console.log(request.readyState) 
+        if (request.readyState === 4){
+            const responsetxt = JSON.parse(this.responseText) // By default the response text is of string so we have to parse it to json
+            console.log(responsetxt["login"]);
+        }
+    }
+    request.send()
+}
+
+makeRequest()
+</script>
+</html>
