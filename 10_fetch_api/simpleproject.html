@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple project</title>
+</head>
+<style>
+    body{
+        overflow: hidden;
+    }
+    .container{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #image{
+        width: 70%;
+        height: 70%;
+    }
+    #response-content{
+        width: 100%;
+        height: 70%;
+        text-align: center;
+    }
+</style>
+<body>
+    <!-- Creating a simple project which demonstrate the use of api and how we make a request using fetch. -->
+
+    <div class="container">
+        <div id="request-content">
+            <input id="git-username" type="text" placeholder="Enter github username">
+            <button id="submit">Send</button>
+        </div>
+        <div id="response-content" style="display: none;">
+            <span id="statuscode"></span><br>
+            <img id="image" src="" alt="">
+        </div>
+    </div>
+</body>
+<script>
+    document.querySelector("#submit").addEventListener('click', (event)=>{
+        event.preventDefault()
+        const gitUsername = document.querySelector("#git-username").value
+        makeRequestToGithub(gitUsername)
+    }, false)
+
+    const makeRequestToGithub = async (username) => {
+        const githubRequestURL = `https://api.github.com/users/${username}`
+        await fetch(githubRequestURL)
+            .then((response)=> {
+                console.log(response.status)
+                makeHttpDogRequest(response.status)
+            })
+            .catch((error)=> {
+                console.error(error)
+            })
+    }
+
+    const makeHttpDogRequest = async (status) => {
+        const httpDogURL = `https://http.dog/${status}.jpg`
+        await fetch(httpDogURL)
+            .then((response)=>{
+                if (!response.ok){
+                    console.log(response);
+                    throw new Error("Network response was not OK")
+                } 
+                return response.blob();
+            })
+            .then((imageBlob)=>{
+                // Firstly we have to create the local url for the image
+                const url = URL.createObjectURL(imageBlob)
+                
+                document.getElementById("response-content").style.display = "block";
+                document.getElementById("statuscode").innerText = status
+                document.getElementById("image").src = url
+            })
+            .catch((error)=>{
+                console.error("Something went wrong while making request:", error)
+            })
+    }
+</script>
+</html>
